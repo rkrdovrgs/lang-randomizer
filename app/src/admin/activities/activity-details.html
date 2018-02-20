@@ -1,0 +1,69 @@
+<template>
+    <require from="admin/activities/activity-details.css"></require>
+    <a route-href="route:admin-activities">Activities</a>
+    <hr/>
+    <input class="form-control" type="text" value.bind="activity.name" placeholder="Activity name" change.delegate="saveActivity()"
+    />
+    <hr/>
+    <h1>Questions</h1>
+    <div class="row">
+        <div class="col col-xs-5 col-xs-offset-1">
+            Question:
+        </div>
+        <div class="col col-xs-4">
+            Answer:
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-xs-1">
+            <select value.bind="newQuestion.questionLang">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+        </div>
+        <div class="col col-xs-4">
+            <input type="text" class="form-control" value.bind="newQuestion.question" />
+        </div>
+        <div class="col col-xs-1">
+            <select value.bind="newQuestion.answerLang">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+        </div>
+        <div class="col col-xs-4">
+            <input type="text" class="form-control" value.bind="newQuestion.answer" />
+        </div>
+        <div class="col col-xs-2">
+            <button class="btn btn-primary pull-right" click.trigger="addQuestion()">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row" repeat.for="f of activity.questions">
+        <div class="col col-xs-1">
+            <select value.bind="f.questionLang" change.delegate="saveActivity()">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+        </div>
+        <div class="col col-xs-4">
+            <input type="text" class="form-control" value.bind="f.question" change.delegate="saveActivity()" />
+        </div>
+        <div class="col col-xs-1">
+            <select value.bind="f.answerLang" change.delegate="saveActivity()">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+        </div>
+        <div class="col col-xs-4">
+            <input type="text" class="form-control" value.bind="f.answer" change.delegate="saveActivity()" />
+        </div>
+
+
+        <div class="col col-xs-2">
+            <button class="btn btn-default pull-right" click.trigger="removeQuestion($index)">
+                <i class="fa fa-remove"></i>
+            </button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,12 @@
+<template>
+    <require from="home.css"></require>
+    <h1>Activities</h1>
+    <div class="row" repeat.for="s of activities">
+        <div class="col col-md-12">
+            <a class="btn btn-link" route-href="route:practice-along;params.bind:{activityId:s._id}">
+                <i class="fa fa-play"></i>
+                ${s.name}
+            </a>
+        </div>
+    </div>
+</template>

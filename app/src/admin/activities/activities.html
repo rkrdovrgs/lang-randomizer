@@ -1,0 +1,19 @@
+<template>
+    <require from="admin/activities/activities.css"></require>
+    <div class="nav-container">
+        <a route-href="route:admin-activity-create">
+            <i class="fa fa-plus"></i>
+            Add Activity
+        </a>
+    </div>
+    <hr/>
+    <h1>Activities</h1>
+    <div class="row" repeat.for="s of activities">
+        <div class="col col-md-12">
+            <button class="btn btn-link" click.trigger="removeActivity($index, s._id)">
+                <i class="fa fa-remove"></i>
+            </button>
+            <a route-href="route:admin-activity-details;params.bind:{activityId:s._id}">${s.name}</a>
+        </div>
+    </div>
+</template>

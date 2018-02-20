@@ -1,0 +1,22 @@
+{
+    "activities": [
+        {
+            "_id": "5a8b75856d1e212431b90dfd",
+            "name": "Vocabulary",
+            "questions": [
+                {
+                    "question": "Cuanto cuesta esta camisa?",
+                    "answer": "How much is this t-shirt?"
+                },
+                {
+                    "question": "Cuanto carros tenes?",
+                    "answer": "How many cars do you have?"
+                },
+                {
+                    "question": "Ella juega",
+                    "answer": "She plays"
+                }
+            ]
+        }
+    ]
+}

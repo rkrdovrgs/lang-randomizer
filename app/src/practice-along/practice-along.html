@@ -1,0 +1,26 @@
+﻿<template>
+    <require from="practice-along/practice-along.css"></require>
+    <a route-href="route:home">
+        <i class="fa fa-list"></i>
+        Playlist
+    </a>
+    <hr/>
+    <h1>${activity.name}</h1>
+    <hr/>
+    <div class="display-container">
+        <div>
+            <button class="btn btn-primary" click.trigger="restartActivity()">
+                <i class="fa fa-play"></i>
+                Start
+            </button>
+            <button class="btn btn-danger" click.trigger="stopActivity()">
+                <i class="fa fa-stop"></i>
+                Stop
+            </button>
+        </div>
+        <div if.bind="playing">
+            <h1 if.bind="currentQuestion.state === 'question'">${currentQuestion.question}</h1>
+            <h1 if.bind="currentQuestion.state === 'answer'">${currentQuestion.answer}</h1>
+        </div>
+    </div>
+</template>
