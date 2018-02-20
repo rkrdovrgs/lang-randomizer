@@ -18,8 +18,7 @@ export class PracticeAlong {
 
     activity: IActivity;
 
-    voiceEs: SpeechSynthesisVoice;
-    voiceEn: SpeechSynthesisVoice;
+    voices: { [lang: string]: SpeechSynthesisVoice } = {};
 
     constructor(private db: DbService) { }
 
@@ -27,8 +26,8 @@ export class PracticeAlong {
         this.activity = await this.db.activities.findById(activityId);
 
         let voices = await VoiceHelpers.getVoices();
-        this.voiceEs = voices.find(v => ["es-es", "es-us"].includes(v.lang.toLocaleLowerCase()));
-        this.voiceEn = voices.find(v => ["en-us"].includes(v.lang.toLocaleLowerCase()));
+        this.voices.es = voices.find(v => ["es-es", "es-us"].includes(v.lang.toLocaleLowerCase()));
+        this.voices.en = voices.find(v => ["en-us"].includes(v.lang.toLocaleLowerCase()));
     }
 
 
@@ -65,11 +64,11 @@ export class PracticeAlong {
         this.selectedQuestions.splice(randomQuestionIndex, 1);
 
         this.currentQuestion.state = QuestionStates.Question
-        await VoiceHelpers.readOutloud(this.currentQuestion.question, this.voiceEs);
+        await VoiceHelpers.readOutloud(this.currentQuestion.question, this.voices[this.currentQuestion.quesitonLang || "en"]);
 
         this.questionTimeoutId = setTimeout(async () => {
             this.currentQuestion.state = QuestionStates.Answer;
-            await VoiceHelpers.readOutloud(this.currentQuestion.answer, this.voiceEn);
+            await VoiceHelpers.readOutloud(this.currentQuestion.answer, this.voices[this.currentQuestion.answerLang || "en"]);
 
             //play next question
             this.questionTimeoutId = setTimeout(() => {
