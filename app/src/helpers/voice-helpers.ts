@@ -1,3 +1,7 @@
+interface IReadEndEvent {
+    elapsedTime: number;
+}
+
 export class VoiceHelpers {
     static async getVoices() {
         let voices: SpeechSynthesisVoice[] = [],
@@ -12,12 +16,16 @@ export class VoiceHelpers {
         return voices;
     }
 
-    static readOutloud(text: string, voice: SpeechSynthesisVoice) {
-        let utterance = new SpeechSynthesisUtterance();
-        utterance.voice = voice;
-        utterance.text = text;
-        utterance.rate = 1;
-        utterance.volume = 1;
-        speechSynthesis.speak(utterance);
+    static readOutloud(text: string, voice: SpeechSynthesisVoice): Promise<IReadEndEvent> {
+        return new Promise(res => {
+            let utterance = new SpeechSynthesisUtterance();
+            utterance.voice = voice;
+            utterance.text = text;
+            utterance.rate = 1;
+            utterance.volume = 1;
+            utterance.onend = <any>res;
+
+            speechSynthesis.speak(utterance);
+        });
     }
 }

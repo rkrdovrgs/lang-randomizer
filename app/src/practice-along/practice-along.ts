@@ -55,7 +55,7 @@ export class PracticeAlong {
             .value();
     }
 
-    playQuestion() {
+    async playQuestion() {
         if (!this.selectedQuestions.length) {
             this.selectedQuestions = this.getSelectedQuestions();
         }
@@ -65,15 +65,16 @@ export class PracticeAlong {
         this.selectedQuestions.splice(randomQuestionIndex, 1);
 
         this.currentQuestion.state = QuestionStates.Question
-        VoiceHelpers.readOutloud(this.currentQuestion.question, this.voiceEs);
-        this.questionTimeoutId = setTimeout(() => {
+        await VoiceHelpers.readOutloud(this.currentQuestion.question, this.voiceEs);
+
+        this.questionTimeoutId = setTimeout(async () => {
             this.currentQuestion.state = QuestionStates.Answer;
-            VoiceHelpers.readOutloud(this.currentQuestion.answer, this.voiceEn);
+            await VoiceHelpers.readOutloud(this.currentQuestion.answer, this.voiceEn);
 
             //play next question
             this.questionTimeoutId = setTimeout(() => {
                 this.playQuestion();
-            }, this.currentQuestion.answer.length * 300);
+            }, 2500);
 
         }, (this.currentQuestion.question.length + this.currentQuestion.answer.length) * 200);
     }
