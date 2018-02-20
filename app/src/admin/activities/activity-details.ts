@@ -51,7 +51,7 @@ export class ActivityDetails {
 
     initNewQuestion() {
         this.newQuestion = <IQuestion>{
-            quesitonLang: "es",
+            questionLang: "en",
             question: "",
             answerLang: "en",
             answer: ""

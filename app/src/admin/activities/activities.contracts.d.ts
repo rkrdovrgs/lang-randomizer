@@ -6,7 +6,7 @@ interface IActivity {
 
 interface IQuestion {
     _id: string;
-    quesitonLang: string;
+    questionLang: string;
     question: string;
 
     answerLang: string;

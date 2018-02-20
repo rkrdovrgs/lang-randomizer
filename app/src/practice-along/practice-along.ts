@@ -64,7 +64,7 @@ export class PracticeAlong {
         this.selectedQuestions.splice(randomQuestionIndex, 1);
 
         this.currentQuestion.state = QuestionStates.Question
-        await VoiceHelpers.readOutloud(this.currentQuestion.question, this.voices[this.currentQuestion.quesitonLang || "en"]);
+        await VoiceHelpers.readOutloud(this.currentQuestion.question, this.voices[this.currentQuestion.questionLang || "en"]);
 
         this.questionTimeoutId = setTimeout(async () => {
             this.currentQuestion.state = QuestionStates.Answer;
