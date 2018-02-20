@@ -83,7 +83,7 @@
     "aurelia-computed": "^1.0.0",
     "aurelia-dialog": "1.0.0-rc.1.0.3",
     "aurelia-kendoui-bridge": "^1.5.2",
-    "auth0-js": "^8.10.1",
+    "auth0-js": "8.10.1",
     "bluebird": "^3.4.1",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
