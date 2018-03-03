@@ -75,7 +75,7 @@ export class PracticeAlong {
                 this.playQuestion();
             }, 2500);
 
-        }, (this.currentQuestion.question.length + this.currentQuestion.answer.length) * 200);
+        }, (this.currentQuestion.answer.length) * 200);
     }
 
     playActivity() {
